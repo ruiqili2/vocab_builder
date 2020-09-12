@@ -1,5 +1,5 @@
 def read_file(list_size):
-    with open("gre3000.csv", "r") as fp:
+    with open("data/gre3000.csv", "r") as fp:
         data = fp.readlines()
         lno, vdict = 1, {}
         for i in range(0, int(len(data) / list_size)):
