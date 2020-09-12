@@ -1,13 +1,13 @@
-def read_file():
+def read_file(list_size):
     with open("gre3000.csv", "r") as fp:
         data = fp.readlines()
         lno, vdict = 1, {}
-        for i in range(0, int(len(data) / 200)):
-            vdict[lno] = [d.split(',')[0:2] for d in data[i * 200: i * 200 + 200]]
+        for i in range(0, int(len(data) / list_size)):
+            vdict[lno] = [d.split(',')[0:2] for d in data[i * list_size: i * list_size + list_size]]
             lno += 1
 
-        vdict[lno] = [d.split(',')[0:2] for d in data[int(len(data) / 200) * 200:]]
-    return vdict, int(len(data) / 200) + 1
+        vdict[lno] = [d.split(',')[0:2] for d in data[int(len(data) / list_size) * list_size:]]
+    return vdict, int(len(data) / list_size) + 1
 
 
 def run_vbuilder(lot):
@@ -27,7 +27,7 @@ def run_vbuilder(lot):
 
 
 def main():
-    vdict, total = read_file()
+    vdict, total = read_file(int(input(f"Please enter the amount of words you would like per list: ")))
     lno = int(input(f"Please enter the list number you would like to work on (1-{total}): "))
     while lno > total or lno < 1:
         lno = int(input(f"Please enter the list number you would like to work on (1-{total}): "))
